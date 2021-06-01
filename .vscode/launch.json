@@ -1,0 +1,32 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "My_Shop",
+            "cwd": "My_Shop",
+            "request": "launch",
+            "type": "dart"
+        },
+        // {
+        //     "name": "Meal_App",
+        //     "cwd": "Meal_App",
+        //     "request": "launch",
+        //     "type": "dart"
+        // },
+        // {
+        //     "name": "Expenses_Manager",
+        //     "cwd": "Expenses_Manager",
+        //     "request": "launch",
+        //     "type": "dart"
+        // },
+        // {
+        //     "name": "First_App",
+        //     "cwd": "First_App",
+        //     "request": "launch",
+        //     "type": "dart"
+        // }
+    ]
+}
