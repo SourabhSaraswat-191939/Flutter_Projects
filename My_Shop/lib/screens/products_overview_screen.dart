@@ -5,6 +5,7 @@ import '../providers/product.dart';
 import '../widgets/products_grid.dart';
 // import '../providers/products.dart';
 import '../widgets/badge.dart';
+import '../widgets/app_drawer.dart';
 import '../providers/cart.dart';
 
 enum FilterOptions {
@@ -23,6 +24,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
   Widget build(BuildContext context) {
     // final productsContainer = Provider.of<Products>(context, listen: false);
     return Scaffold(
+      drawer: AppDrawer(),
       appBar: AppBar(
         title: Text('MyShop'),
         actions: <Widget>[
