@@ -5,11 +5,23 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "My_Shop",
-            "cwd": "My_Shop",
+            "name": "Place_App",
+            "cwd": "Place_App",
             "request": "launch",
             "type": "dart"
         },
+        // {
+        //     "name": "Animation_App",
+        //     "cwd": "Animation_App",
+        //     "request": "launch",
+        //     "type": "dart"
+        // },
+        // {
+        //     "name": "My_Shop",
+        //     "cwd": "My_Shop",
+        //     "request": "launch",
+        //     "type": "dart"
+        // },
         // {
         //     "name": "Meal_App",
         //     "cwd": "Meal_App",
