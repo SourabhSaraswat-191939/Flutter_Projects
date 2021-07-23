@@ -5,11 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Place_App",
-            "cwd": "Place_App",
+            "name": "chat_app",
+            "cwd": "chat_app",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [
+                "--no-sound-null-safety"
+               ]
         },
+        // {
+        //     "name": "Place_App",
+        //     "cwd": "Place_App",
+        //     "request": "launch",
+        //     "type": "dart"
+        // },
         // {
         //     "name": "Animation_App",
         //     "cwd": "Animation_App",
