@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../widgets/chat/messages.dart';
+import '../widgets/chat/new_message.dart';
 
 class ChatScreen extends StatelessWidget {
   // const ChatScreen({Key? key}) : super(key: key);
@@ -14,45 +17,64 @@ class ChatScreen extends StatelessWidget {
       DeviceOrientation.portraitUp,
     ]);
     return Scaffold(
-      body: StreamBuilder(
-        stream: Firestore.instance
-            .collection('chats/d0xSG1RtPc7g21zEL0Z8/messages')
-            .snapshots(),
-        builder: (ctx, AsyncSnapshot streamSnapshot) {
-          if (streamSnapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          final documents = streamSnapshot.data.documents;
-          return new ListView.builder(
-            itemCount: documents.length,
-            itemBuilder: (ctx, index) => Container(
-              padding: EdgeInsets.all(8),
-              child: Text(documents[index]['text']),
+      appBar: AppBar(
+        title: Text('Chat App'),
+        actions: [
+          DropdownButton(
+            icon: Icon(
+              Icons.more_vert,
+              // color: Theme.of(context).primaryIconTheme.color,
             ),
-          );
-        },
+            items: [
+              DropdownMenuItem(
+                  value: 'logout',
+                  child: Container(
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.exit_to_app,
+                          color: Colors.black,
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text('Logout'),
+                      ],
+                    ),
+                  ))
+            ],
+            onChanged: (itemIdentifier) {
+              if (itemIdentifier == 'logout') {
+                FirebaseAuth.instance.signOut();
+              }
+            },
+          )
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Firestore.instance
-              .collection('chats/d0xSG1RtPc7g21zEL0Z8/messages')
-              .add({
-            'id': 'SourabhSaraswat',
-            'text': 'This was added by clicking Float button!'
-          });
-          // Firestore.instance
-          //     .collection('chats/d0xSG1RtPc7g21zEL0Z8/messages')
-          //     .snapshots()
-          //     .listen((data) {
-          //   data.documents.forEach((document) {
-          //     print(document['text']);
-          //   });
-          // });
-        },
+      body: Container(
+        child: Column(
+          children: [Expanded(child: Messages()), NewMessage()],
+        ),
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.add),
+      //   onPressed: () {
+      //     Firestore.instance
+      //         .collection('chats/d0xSG1RtPc7g21zEL0Z8/messages')
+      //         .add({
+      //       'id': 'SourabhSaraswat',
+      //       'text': 'This was added by clicking Float button!'
+      //     });
+      // Firestore.instance
+      //     .collection('chats/d0xSG1RtPc7g21zEL0Z8/messages')
+      //     .snapshots()
+      //     .listen((data) {
+      //   data.documents.forEach((document) {
+      //     print(document['text']);
+      //   });
+      // });
+      // },
+      // ),
     );
   }
 }
