@@ -13,7 +13,7 @@ class AppDrawer extends StatelessWidget {
       child: Column(
         children: [
           AppBar(
-            title: Text("Hello Friends !"),
+            title: Text("Hello Users !"),
             automaticallyImplyLeading: true, // It will never add a back button.
           ),
           Divider(),

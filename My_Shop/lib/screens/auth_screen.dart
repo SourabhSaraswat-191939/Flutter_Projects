@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../providers/auth.dart';
 import 'package:provider/provider.dart';
 import '../models/http_exception.dart';
+import '../widgets/shopping_bag_animation.dart';
 
 enum AuthMode { Signup, Login }
 
@@ -17,18 +18,22 @@ class AuthScreen extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-              colors: [
-                Color(0xffB993D6).withOpacity(0.8),
-                Color(0xff8CA6DB).withOpacity(0.8),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              stops: [0, 1],
-            )),
+              // color: Colors.red,
+              gradient: LinearGradient(
+                colors: [
+                  Colors.red.withOpacity(1),
+                  Colors.red.withOpacity(0.8),
+                  Colors.purple.withOpacity(0.8),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                stops: [0, 0.4, 1],
+              ),
+            ),
           ),
           SingleChildScrollView(
             child: Container(
+              margin: EdgeInsets.only(top: 30),
               height: deviceSize.height,
               width: deviceSize.width,
               child: Column(
@@ -53,7 +58,7 @@ class AuthScreen extends StatelessWidget {
                             )
                           ]),
                       child: Text(
-                        'My',
+                        'Shop',
                         style: TextStyle(
                           color: Theme.of(context).accentTextTheme.title.color,
                           fontFamily: 'Anton',
@@ -81,7 +86,7 @@ class AuthScreen extends StatelessWidget {
                             )
                           ]),
                       child: Text(
-                        'Shop',
+                        'App',
                         style: TextStyle(
                           color: Theme.of(context).accentTextTheme.title.color,
                           fontFamily: 'Anton',
@@ -94,7 +99,11 @@ class AuthScreen extends StatelessWidget {
                   Flexible(
                     flex: deviceSize.width > 600 ? 2 : null,
                     child: AuthCard(),
-                  )
+                  ),
+                  Flexible(
+                    child: ShoppingBagAnimation(
+                        80, MediaQuery.of(context).size.width * 0.40),
+                  ),
                 ],
               ),
             ),
@@ -170,6 +179,7 @@ class _AuthCardState extends State<AuthCard>
   }
 
   Future<void> _submit() async {
+    FocusScope.of(context).unfocus();
     if (!_formKey.currentState.validate()) {
       print("Error Occured");
       return;

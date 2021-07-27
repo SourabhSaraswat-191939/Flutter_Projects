@@ -46,16 +46,25 @@ class CartScreen extends StatelessWidget {
             height: 10,
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: cart.itemCount,
-              itemBuilder: (ctx, i) => CartItem(
-                cart.items.values.toList()[i].id,
-                cart.items.keys.toList()[i],
-                cart.items.values.toList()[i].price,
-                cart.items.values.toList()[i].quantity,
-                cart.items.values.toList()[i].title,
-              ),
-            ),
+            child: cart.totalAmount <= 0
+                ? Center(
+                    child: Text(
+                    '...Nothing Is there in your cart...',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'Lato',
+                    ),
+                  ))
+                : ListView.builder(
+                    itemCount: cart.itemCount,
+                    itemBuilder: (ctx, i) => CartItem(
+                      cart.items.values.toList()[i].id,
+                      cart.items.keys.toList()[i],
+                      cart.items.values.toList()[i].price,
+                      cart.items.values.toList()[i].quantity,
+                      cart.items.values.toList()[i].title,
+                    ),
+                  ),
           ),
         ],
       ),

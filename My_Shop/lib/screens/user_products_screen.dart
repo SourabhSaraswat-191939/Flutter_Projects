@@ -39,19 +39,46 @@ class UserProductsScreen extends StatelessWidget {
                     child: Consumer<Products>(
                       builder: (ctx, productsData, _) => Padding(
                           padding: EdgeInsets.all(8),
-                          child: ListView.builder(
-                            itemBuilder: (_, index) => Column(
-                              children: [
-                                UserProductItem(
-                                    productsData.items[index].id,
-                                    productsData.items[index].title,
-                                    productsData.items[index].price,
-                                    productsData.items[index].imageUrl),
-                                Divider(),
-                              ],
-                            ),
-                            itemCount: productsData.items.length,
-                          )),
+                          child: productsData.items.length == 0
+                              ? Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Center(
+                                      child: Text(
+                                        '...Nothing is there in your products...',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontFamily: 'Lato',
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 18,
+                                    ),
+                                    Center(
+                                      child: Text(
+                                        'Add it by clicking the + button on top right.',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontFamily: 'Lato',
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : ListView.builder(
+                                  itemBuilder: (_, index) => Column(
+                                    children: [
+                                      UserProductItem(
+                                          productsData.items[index].id,
+                                          productsData.items[index].title,
+                                          productsData.items[index].price,
+                                          productsData.items[index].imageUrl),
+                                      Divider(),
+                                    ],
+                                  ),
+                                  itemCount: productsData.items.length,
+                                )),
                     ),
                   ),
       ),
