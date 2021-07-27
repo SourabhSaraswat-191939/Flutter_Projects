@@ -28,13 +28,14 @@ class Messages extends StatelessWidget {
                   );
                 }
                 final chatDocs = chatSnapshot.data.documents!;
-
+                print(chatDocs[0]['url']);
                 return ListView.builder(
                     reverse: true,
                     itemBuilder: (ctx, index) => MessageBubble(
                           chatDocs[index]['text'],
                           chatDocs[index]['userId'] == futureSnapshot.data.uid,
                           chatDocs[index]['username'],
+                          chatDocs[index]['userImage'],
                           key: ValueKey(
                             chatDocs[index].documentID,
                           ),

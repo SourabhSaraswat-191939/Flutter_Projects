@@ -42,8 +42,6 @@ class _AuthScreenState extends State<AuthScreen> {
 
         await refStorage.putFile(userImage).onComplete;
         final imageUrl = await refStorage.getDownloadURL();
-        print('come');
-        print(imageUrl);
         await Firestore.instance
             .collection('users')
             .document(authResult.user.uid)
@@ -52,7 +50,6 @@ class _AuthScreenState extends State<AuthScreen> {
           'email': email,
           'url': imageUrl,
         });
-        print('come2');
       }
     } on PlatformException catch (error) {
       var message = 'An error occured, please check your creadentials!';

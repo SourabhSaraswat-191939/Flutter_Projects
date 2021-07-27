@@ -33,7 +33,7 @@ class _AuthFormState extends State<AuthForm> {
   void _trySubmit() {
     var isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
-    if (_userImageFile == null) {
+    if (_userImageFile == null && !_isLogin) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Please pick an Image.'),
         backgroundColor: Theme.of(context).errorColor,
@@ -62,6 +62,9 @@ class _AuthFormState extends State<AuthForm> {
                   if (!_isLogin) UserImagePicker(pickedImage),
                   TextFormField(
                     key: ValueKey('email'),
+                    autocorrect: false,
+                    textCapitalization: TextCapitalization.none,
+                    enableSuggestions: false,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(labelText: 'Email Address'),
                     validator: (value) {
@@ -85,6 +88,9 @@ class _AuthFormState extends State<AuthForm> {
                   if (!_isLogin)
                     TextFormField(
                       key: ValueKey('username'),
+                      autocorrect: true,
+                      textCapitalization: TextCapitalization.words,
+                      enableSuggestions: true,
                       validator: (value) {
                         if (value == null ||
                             value.isEmpty ||
